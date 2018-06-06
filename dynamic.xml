@@ -1,0 +1,331 @@
+var latlong = {}
+latlong.DZ = {'latitude':28,'longitude':3};
+latlong.BR = {'latitude':-10,'longitude':-55};
+latlong.CA = {'latitude':54,'longitude':-100};
+latlong.CN = {'latitude':35,'longitude':105};
+latlong.DE = {'latitude':51,'longitude':9};
+latlong.JP = {'latitude':36,'longitude':138};
+latlong.MX = {'latitude':23,'longitude':-102};
+latlong.PH = {'latitude':13,'longitude':122};
+latlong.RU = {'latitude':60,'longitude':100};
+latlong.TR = {'latitude':39,'longitude':35};
+
+var mapData = [
+    [{'year':1,'code':'CN','name':'China','value':200,'color':'#eea638'},
+    {'year':1,'code':'JP','name':'Japan','value':120,'color':'#eea638'}],
+    
+    [{'year':2,'code':'CN','name':'China','value':400,'color':'#eea638'},
+    {'year':2,'code':'JP','name':'Japan','value':240,'color':'#eea638'},
+    {'year':2,'code':'DZ','name':'Algeria','value':125,'color':'#eea638'},
+    {'year':2,'code':'DE','name':'Germany','value':100,'color':'#eea638'},
+    {'year':4,'code':'CA','name':'Canada','value':100,'color':'#eea638'},],
+    
+    [{'year':3,'code':'CN','name':'China','value':600,'color':'#eea638'},
+    {'year':3,'code':'JP','name':'Japan','value':360,'color':'#eea638'},
+    {'year':3,'code':'DZ','name':'Algeria','value':250,'color':'#eea638'},
+    {'year':3,'code':'MX','name':'Mexico','value':100,'color':'#eea638'},
+    {'year':3,'code':'DE','name':'Germany','value':200,'color':'#eea638'},
+    {'year':3,'code':'BR','name':'Brazil','value':200,'color':'#eea638'},
+    {'year':4,'code':'CA','name':'Canada','value':200,'color':'#eea638'},],
+    
+    [{'year':4,'code':'CN','name':'China','value':1000,'color':'#eea638'},
+    {'year':4,'code':'DZ','name':'Algeria','value':900,'color':'#eea638'},
+    {'year':4,'code':'BR','name':'Brazil','value':700,'color':'#eea638'},
+    {'year':4,'code':'CA','name':'Canada','value':500,'color':'#eea638'},
+    {'year':4,'code':'DE','name':'Germany','value':400,'color':'#eea638'},
+    {'year':4,'code':'JP','name':'Japan','value':600,'color':'#eea638'},
+    {'year':4,'code':'MX','name':'Mexico','value':300,'color':'#eea638'},
+    {'year':4,'code':'PH','name':'Philippines','value':500,'color':'#eea638'},
+    {'year':4,'code':'RU','name':'Russia','value':200,'color':'#eea638'},
+    {'year':4,'code':'TR','name':'Turkey','value':200,'color':'#eea638'},
+    ]];
+var mapdata1 = [
+    [{'year':1,'code':'CN','name':'China','value':800,'color':'#eea638'}],
+    
+    [{'year':2,'code':'CN','name':'China','value':850,'color':'#eea638'},
+    {'year':2,'code':'CA','name':'Canada','value':800,'color':'#eea638'}],
+    
+    [{'year':3,'code':'CN','name':'China','value':900,'color':'#eea638'},
+    {'year':3,'code':'CA','name':'Canada','value':850,'color':'#eea638'},
+    {'year':3,'code':'BR','name':'Brazil','value':800,'color':'#eea638'}],
+    
+    [{'year':4,'code':'CN','name':'China','value':950,'color':'#eea638'},
+    {'year':4,'code':'CA','name':'Canada','value':850,'color':'#eea638'},
+    {'year':4,'code':'BR','name':'Brazil','value':850,'color':'#eea638'},
+    {'year':4,'code':'RU','name':'Russia','value':800,'color':'#eea638'},
+    ]];
+// var max = -Infinity;
+// var min = Infinity;
+var max = 1000,
+    min = 800;
+var maxSize4Pin = 60,
+    minSize4Pin = 20;
+// mapData.forEach(function(itemOpt){
+//     if(itemOpt.value>max){
+//         max = itemOpt.value;
+//     }
+//     if(itemOpt.value<min){
+//         min = itemOpt.value
+//     }
+// });
+var year  =["1","2","3","4"];
+
+optionXyMap01 = {
+    timeline: {
+        data: year,
+        axisType: 'category',
+        autoPlay: true,
+        playInterval: 1000,
+        left: '10%',
+        right: '10%',
+        bottom: '3%',
+        width: '80%',
+        //  height: null,
+        label: {
+            normal: {
+                textStyle: {
+                    color: '#ddd'
+                }
+            },
+            emphasis: {
+                textStyle: {
+                    color: '#fff'
+                }
+            }
+        },
+        symbol: 'none',
+        lineStyle: {
+            color: '#555'
+        },
+        checkpointStyle: {
+            borderColor: '#777',
+            borderWidth: 2
+        },
+        controlStyle: {
+            showNextBtn: false,
+            showPrevBtn: false,
+            normal: {
+                color: '#666',
+                borderColor: '#666'
+            },
+            emphasis: {
+                color: '#aaa',
+                borderColor: '#aaa'
+            }
+        },
+
+    },
+    baseOption: {
+        animation: true,
+        animationDuration: 1000,
+        animationEasing: 'cubicInOut',
+        animationDurationUpdate: 1000,
+        animationEasingUpdate: 'cubicInOut',
+        grid: {
+            right: '5%',
+            top: '20%',
+            bottom: '10%',
+            width: '30%'
+        },
+        tooltip: {
+            trigger: 'axis', // hover触发器
+            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+                shadowStyle: {
+                    color: 'rgba(150,150,150,0.1)' //hover颜色
+                }
+            }
+        },
+        geo:{
+        name:'what?',
+        type:'map',
+        map:'world',
+        roam:true,
+        label:{
+            emphasis:{
+                show:false
+            }
+        },
+        itemStyle:{
+            normal:{
+                borderWidth:'1.2',
+                borderColor:'#102748',
+                areaColor:'#161616',
+            },
+            emphasis:{
+                areaColor:'#2a333d'
+            }
+        }
+    },
+    },
+    options: []
+
+};
+
+for (var n = 0; n < year.length; n++) {
+        optionXyMap01.options.push({
+            backgroundColor:'#161616',
+            visualMap:{
+            min:0,
+            max:1000,
+            left:'left',
+            top:'bottom',
+            text:['high','low'],
+            textStyle:{
+                color:'#fff'
+            },
+            calculable:true,
+            seriesIndex:[1],
+            inRange:{
+                color:['#AED9E2','#017DFF']
+            },
+        },
+            toolbox:{
+                show:true,
+                orient:'vertical',
+                left:'right',
+                top:'center',
+                feature:{
+                    dataView:{readOnly:false},
+                    restore:{},
+                    saveAsImage:{}
+                }
+            },
+            geo:{
+                name:'what?',
+                type:'map',
+                map:'world',
+                roam:true,
+                label:{
+                    emphasis:{
+                        show:false
+                    }
+                },
+                itemStyle:{
+                    normal:{
+                        borderWidth:'1.2',
+                        borderColor:'#102748',
+                        areaColor:'#161616',
+                    },
+                    emphasis:{
+                        areaColor:'#2a333d'
+                    }
+                }
+            },
+            series:[
+                {
+                    type:'scatter',
+                    coordinateSystem:'geo',
+                    symbol:'pin',
+                    symbolSize:function(val){
+                        var a = (maxSize4Pin-minSize4Pin)/(max-min);
+                        var b = maxSize4Pin-a*max;
+                        return a*val[2]+b;
+                    },
+                    data:mapdata1[n].map(function(itemOpt){
+                        return{
+                            name:itemOpt.name,
+                            value:[
+                                latlong[itemOpt.code].longitude,
+                                latlong[itemOpt.code].latitude,
+                                itemOpt.value
+                                ],
+                                label:{
+                                    emphasis:{
+                                        position:'right',
+                                        show:true
+                                    }
+                                },
+                                itemStyle:{
+                                    normal:{
+                                        color:itemOpt.color
+                                    }
+                                }
+                        };
+                    })
+                },
+                {
+                    type:'map',
+                    geoIndex:0,
+                    aspectScale:0.75,
+                    showLegendSymbol:false,
+                    label:{
+                        normal:{
+                            show:true
+                        },
+                        emphasis:{
+                            show:false,
+                            textStyle:{
+                                color:'#fff'
+                            }
+                        }
+                    },
+                    roam:true,
+                    itemStyle:{
+                        normal:{
+                            areaColor:'#031525',
+                            borderColor:'#3B5077',
+                        },
+                        emphasis:{
+                            areaColor:'#fff'
+                        }
+                    },
+                    animation:false,
+                    data:mapData[n]
+                },
+                {
+                    name:'TOP5',
+                    type:'effectScatter',
+                    coordinateSystem:'geo',
+                    data:mapdata1[n].map(function(itemOpt){
+                        return{
+                            //name:itemOpt.name,
+                            value:[
+                                latlong[itemOpt.code].longitude,
+                                latlong[itemOpt.code].latitude,
+                                itemOpt.value
+                                ],
+                                label:{
+                                    emphasis:{
+                                        position:'right',
+                                        show:true
+                                    }
+                                },
+                                itemStyle:{
+                                    normal:{
+                                        color:itemOpt.color
+                                    }
+                                }
+                        };
+                }),
+                
+                    symbolSize:function(val){
+                        return val[2]/80;
+                    },
+                    showEffectOn:'render',
+                    rippleEffect:{
+                        brushType:'stroke'
+                    },
+                    hoverAnimation:true,
+                    label:{
+                        normal:{
+                            formatter:'{b}',
+                            position:'right',
+                            show:true
+                        }
+                    },
+                    itemStyle:{
+                        normal:{
+                            color:'yellow',
+                            shadowBlur:20,
+                            shadowColor:'yellow'
+                        }
+                    },
+                    zlevel:1
+                },
+            ]
+    });
+};
+myChart.setOption(optionXyMap01);
+
+    
